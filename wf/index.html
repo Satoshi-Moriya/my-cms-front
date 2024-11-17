@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シンプルCMS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ダッシュボード画面 -->
+    <div id="dashboard">
+        <h1>ダッシュボード</h1>
+        <button id="new-article-btn">新規記事作成</button>
+        <table>
+            <tr>
+                <th>タイトル</th>
+                <th>作成日</th>
+                <th>ステータス</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>記事1</td>
+                <td>2024/11/17</td>
+                <td>公開</td>
+                <td>
+                    <button class="edit-btn">編集</button>
+                    <button class="delete-btn">削除</button>
+                </td>
+            </tr>
+            <!-- 必要に応じて追加の行 -->
+        </table>
+    </div>
+
+    <!-- 記事作成/編集画面 -->
+    <div id="article-editor" style="display: none;">
+        <h1>記事作成・編集</h1>
+        <label for="title">タイトル:</label><br>
+        <input type="text" id="title" placeholder="記事のタイトルを入力"><br><br>
+        <label for="content">本文:</label><br>
+        <textarea id="content" placeholder="記事の内容を入力"></textarea><br><br>
+        <label for="slug">スラッグ:</label><br>
+        <input type="text" id="slug" placeholder="スラッグを入力 (例: 記事タイトル)"><br><br>
+        <label for="status">ステータス:</label><br>
+        <select id="status">
+            <option value="draft">下書き</option>
+            <option value="published">公開</option>
+        </select><br><br>
+        <button id="save-btn">保存</button>
+        <button id="cancel-btn">キャンセル</button>
+    </div>
+
+    <!-- 削除確認モーダル -->
+    <div id="delete-modal" style="display: none;">
+        <div id="modal-content">
+            <p>本当にこの記事を削除しますか？</p>
+            <button id="confirm-delete-btn">削除する</button>
+            <button id="cancel-delete-btn">キャンセル</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
