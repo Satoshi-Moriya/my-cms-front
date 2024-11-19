@@ -9,7 +9,6 @@ erDiagram
     text content "投稿内容"
     timestamp created_at
     timestamp updated_at
-    timestamp deleted_at
   }
 
   slugs {
@@ -17,6 +16,5 @@ erDiagram
     string name "スラッグ名"
     timestamp created_at
     timestamp updated_at
-    timestamp deleted_at
   }
 ```
