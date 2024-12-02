@@ -1,3 +1,5 @@
+import React from "react";
+
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -12,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ja'>
+    <html lang="ja">
       <body className={`antialiased`}>{children}</body>
     </html>
   );
