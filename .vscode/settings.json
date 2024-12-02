@@ -3,5 +3,6 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit" // ファイル保存時にESLintの自動修正を実行する
-  }
+  },
+  "markuplint.enable": true // Markuplintを有効化する
 }
