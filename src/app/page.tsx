@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="container mx-auto">
@@ -15,7 +17,9 @@ export default function Home() {
               </li>
             </ul>
           </details>
-          <button className="btn btn-neutral btn-active">新規追加</button>
+          <Link className="btn btn-neutral btn-active" href="/posts">
+            新規追加
+          </Link>
         </div>
         <div className="overflow-x-auto">
           <table className="table">
@@ -43,7 +47,9 @@ export default function Home() {
                 <td>2024/12/21</td>
                 <td>公開</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">編集</button>
+                  <Link className="btn btn-ghost btn-xs" href="/posts">
+                    編集
+                  </Link>
                 </th>
               </tr>
               <tr>
@@ -56,7 +62,9 @@ export default function Home() {
                 <td>2024/12/21</td>
                 <td>下書き</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">編集</button>
+                  <Link className="btn btn-ghost btn-xs" href="/posts">
+                    編集
+                  </Link>
                 </th>
               </tr>
               <tr>
@@ -69,7 +77,9 @@ export default function Home() {
                 <td>2024/12/21</td>
                 <td>公開</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">編集</button>
+                  <Link className="btn btn-ghost btn-xs" href="/posts">
+                    編集
+                  </Link>
                 </th>
               </tr>
             </tbody>
