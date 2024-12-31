@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import Modal from "./components/modal";
+
 export default function Home() {
   return (
     <div className="container mx-auto">
@@ -13,7 +15,8 @@ export default function Home() {
                 <a>下書きに戻す</a>
               </li>
               <li>
-                <a>削除</a>
+                {/* <a>削除</a> */}
+                <Modal />
               </li>
             </ul>
           </details>
