@@ -1,20 +1,18 @@
 "use client";
 
+import { useRef } from "react";
+
 export default function Modal() {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const handleShowModal = () => dialogRef.current?.showModal();
+  const handleCloseModal = () => dialogRef.current?.close();
+
   return (
     <div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-      {/* todo refにする */}
-      <button
-        className="btn"
-        onClick={() => {
-          const modalElement = document.getElementById("my_modal_1") as HTMLDialogElement | null;
-          modalElement?.showModal();
-        }}
-      >
+      <button className="btn" onClick={handleShowModal}>
         削除
       </button>
-      <dialog className="modal" id="my_modal_1">
+      <dialog className="modal" ref={dialogRef}>
         <div className="modal-box">
           <p className="py-4">本当に選択された記事を削除しますか。</p>
           <div className="modal-action">
@@ -22,8 +20,9 @@ export default function Modal() {
               {/* if there is a button in form, it will close the modal */}
               <button className="btn">削除する</button>
             </form>
-            {/* todo 通信を行わないモーダル画面をただ消すだけの「キャンセル」ボタンを作りたい */}
-            {/* <button className="btn">キャンセル</button> */}
+            <button className="btn" onClick={handleCloseModal}>
+              キャンセル
+            </button>
           </div>
         </div>
       </dialog>
