@@ -15,7 +15,6 @@ export default function Home() {
                 <a>下書きに戻す</a>
               </li>
               <li>
-                {/* <a>削除</a> */}
                 <Modal />
               </li>
             </ul>
