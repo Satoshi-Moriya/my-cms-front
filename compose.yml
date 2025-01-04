@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:latest
-    container_name: my-cms-postgres-container
+    container_name: my-cms-postgres
     environment:
       POSTGRES_DB: my_db
       POSTGRES_USER: user
@@ -10,5 +10,17 @@ services:
       - 5432:5432
     volumes:
       - db_data:/var/lib/postgresql
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: my-cms-app
+    ports:
+      - 12000:3000
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    command: sh -c "npm run dev"
 volumes:
   db_data:
+  node_modules:
