@@ -16,3 +16,17 @@ wfフォルダ内にHTML,CSS,JSで作成しました
   - 上述している通りこだわりはあまりなかったから
   - [こちら](https://zenn.dev/hatappo/articles/ae727f25a599b3)の記事を見て、githubのスター数が多く人気があり、情報量も多いと思ったから
   - shadcn/uiの方が人気だが以前少しだけ使用したことがあり、使用していないものを使ってみたかったから
+
+## マイグレーション
+
+データ初期投入
+
+```
+npx prisma db seed
+```
+
+データリセット
+
+```
+npx prisma migrate reset
+```
