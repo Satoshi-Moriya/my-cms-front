@@ -16,6 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
+    "types": ["@testing-library/jest-dom", "@testing-library/jest-dom/jest-globals"],
     "plugins": [
       {
         "name": "next"
