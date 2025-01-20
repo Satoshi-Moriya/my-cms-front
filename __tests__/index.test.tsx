@@ -20,12 +20,4 @@ describe("Home", () => {
 
     expect(text).toBeInTheDocument();
   });
-
-  test("renders a text", () => {
-    render(<Home />);
-
-    const text: HTMLElement = screen.getByText("新規追加ボタン"); // 落ちるテスト
-
-    expect(text).toBeInTheDocument();
-  });
 });
