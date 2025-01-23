@@ -8,11 +8,12 @@ export default function Page() {
         <form action="" className="grid gap-4">
           <div>
             <div>
-              <label htmlFor="">タイトル</label>
+              <label htmlFor="title">タイトル</label>
             </div>
             <div>
               <input
                 className="input input-bordered w-full"
+                id="title"
                 placeholder="記事のタイトルを入力"
                 type="text"
               />
@@ -20,22 +21,24 @@ export default function Page() {
           </div>
           <div>
             <div>
-              <label htmlFor="">本文</label>
+              <label htmlFor="content">本文</label>
             </div>
             <div>
               <textarea
                 className="textarea textarea-bordered w-full"
+                id="content"
                 placeholder="記事の内容を入力"
               ></textarea>
             </div>
           </div>
           <div>
             <div>
-              <label htmlFor="">スラッグ</label>
+              <label htmlFor="slug">スラッグ</label>
             </div>
             <div>
               <input
                 className="input input-bordered w-full"
+                id="slug"
                 placeholder="スラッグを入力"
                 type="text"
               />
@@ -43,10 +46,10 @@ export default function Page() {
           </div>
           <div>
             <div>
-              <label htmlFor="">ステータス</label>
+              <label htmlFor="status">ステータス</label>
             </div>
             <div>
-              <select className="select select-bordered w-full">
+              <select className="select select-bordered w-full" id="status">
                 <option value="draft">下書き</option>
                 <option value="publish">公開</option>
               </select>
