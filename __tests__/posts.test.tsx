@@ -30,6 +30,7 @@ describe("記事を作成できるようにする", () => {
       const inputTitle = screen.getByLabelText("タイトル");
 
       await user.click(inputTitle);
+      await user.tab();
 
       expect(screen.queryByText("タイトルは必須です")).toBeInTheDocument();
     });
@@ -54,14 +55,15 @@ describe("記事を作成できるようにする", () => {
 
     await user.type(
       inputTitle,
-      "これは単体テストのダミーデータです。実際のデータを使用する代わりに、この文を使ってテストを行います。適切な長さの文章です。100文字オーバー",
+      "これは単体テストのダミーデータです。実際のデータを使用する代わりに、この文を使ってテストを行います。適切な長さの文章です。100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー100文字オーバー",
     );
+    await user.tab();
 
     expect(screen.queryByText("タイトルは100文字以内で入力してください")).toBeInTheDocument();
   });
 
   describe("「スラッグ」に文字が入力されていない場合、「スラッグは必須です」というエラーが発生する", () => {
-    test("入力欄に「タイトル」と入力したら、「タイトルは必須です」は表示されない", async () => {
+    test("入力欄に「スラッグ」と入力したら、「スラッグは必須です」は表示されない", async () => {
       const user = userEvent.setup();
       render(<Page />);
 
@@ -79,6 +81,7 @@ describe("記事を作成できるようにする", () => {
       const inputSlug = screen.getByLabelText("スラッグ");
 
       await user.click(inputSlug);
+      await user.tab();
 
       expect(screen.queryByText("スラッグは必須です")).toBeInTheDocument();
     });

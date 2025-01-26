@@ -19,6 +19,8 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@conform-to/react": "^1.2.2",
+    "@conform-to/zod": "^1.2.2",
     "@prisma/client": "^6.1.0",
     "@types/jest": "^29.5.14",
     "next": "15.0.3",
