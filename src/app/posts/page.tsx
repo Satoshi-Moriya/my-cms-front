@@ -32,7 +32,7 @@ export default function Page() {
                 placeholder="記事のタイトルを入力"
                 type="text"
               />
-              <div>{fields.title.errors}</div>
+              <div className="text-red-500">{fields.title.errors}</div>
             </div>
           </div>
           <div>
@@ -60,7 +60,7 @@ export default function Page() {
                 placeholder="スラッグを入力"
                 type="text"
               />
-              <div>{fields.slug.errors}</div>
+              <div className="text-red-500">{fields.slug.errors}</div>
             </div>
           </div>
           <div>
