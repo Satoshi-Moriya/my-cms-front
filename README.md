@@ -30,3 +30,9 @@ npx prisma db seed
 ```
 npx prisma migrate reset
 ```
+
+## TDD
+
+- 勉強のためにTDDを導入する
+- 下記の記事を参考にできるだけTDDを実践する（あまりに生産性が落ちてしまう実装箇所などは無視してOKとする）
+  - [フロントエンド（React Testing Library）で TDD（テスト駆動開発）をする](https://zenn.dev/higa/articles/34439dc279c55dd2ab95)
