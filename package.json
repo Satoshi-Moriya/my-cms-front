@@ -9,6 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write src",
+    "format:check": "prettier --check src",
     "markuplint": "markuplint \"./**/*.tsx\"",
     "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'",
     "prepare": "husky",
