@@ -1,18 +1,31 @@
 ```mermaid
 erDiagram
+  users ||--o{ posts: "ユーザーは0個以上の記事を持つ"
   posts ||--|| slugs: "1つの投稿は1つのスラッグを持つ"
+
+  users {
+    bigint id PK
+    string email "メールアドレス"
+    string name "名前"
+    string password "パスワード"
+    timestamp created_at
+    timestamp updated_at
+  }
 
   posts {
     bigint id PK
+    references user_id FK
     references slug_id FK
     string title "投稿タイトル"
     text content "投稿内容"
+    boolean published "記事ステータス"
     timestamp created_at
     timestamp updated_at
   }
 
   slugs {
     bigint id PK
+    bigint post_id FK
     string name "スラッグ名"
     timestamp created_at
     timestamp updated_at
