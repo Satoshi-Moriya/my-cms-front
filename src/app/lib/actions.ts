@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import { postSchema } from "../schema";
 
-// server actionなのでasyncが必要だが、lintエラーが起きるので下記で無効化している
+// ToDo server actionなのでasyncが必要だが、lintエラーが起きるので下記で一旦無効化している
 // eslint-disable-next-line
 export async function createPosts(prevState: unknown, formData: FormData) {
   const submission = parseWithZod(formData, {
