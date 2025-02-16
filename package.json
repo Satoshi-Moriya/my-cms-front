@@ -31,6 +31,7 @@
   "devDependencies": {
     "@markuplint/jsx-parser": "^4.7.13",
     "@markuplint/react-spec": "^4.5.13",
+    "@playwright/test": "^1.50.1",
     "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
