@@ -16,6 +16,7 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "jsdom",
+  testPathIgnorePatterns: ["<rootDir>/__tests__/e2e/"],
 };
 
 export default createJestConfig(config);

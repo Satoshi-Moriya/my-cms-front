@@ -16,6 +16,12 @@ wfフォルダ内にHTML,CSS,JSで作成しました
   - 上述している通りこだわりはあまりなかったから
   - [こちら](https://zenn.dev/hatappo/articles/ae727f25a599b3)の記事を見て、githubのスター数が多く人気があり、情報量も多いと思ったから
   - shadcn/uiの方が人気だが以前少しだけ使用したことがあり、使用していないものを使ってみたかったから
+- [Playwright](https://playwright.dev/)
+  - ダウンロード数
+  - 対応ブラウザ
+  - 機能の豊富さ
+    - [こちら](https://zenn.dev/nyazuki/articles/2c468862e58668)の記事を参考
+  - Next.jsとの相性（[公式サイト](https://nextjs.org/docs/app/building-your-application/testing/playwright)に導入手順があった）
 
 ## マイグレーション
 
