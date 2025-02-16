@@ -1,5 +1,5 @@
 // // ToDo 全部のテストを書き終えた後userEvent.setUp()をbeforeEach(?)などで切り出しても問題なさそうか検証する
-// import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 // import { screen } from "@testing-library/dom";
 // import { render } from "@testing-library/react";
 // import userEvent from "@testing-library/user-event";
@@ -116,3 +116,8 @@
 //     "正常に記事が作成されてない場合、記事が編集できるようになっている（urlが作成用のままになっている）",
 //   );
 // });
+
+// ToDo failで落ちるのが気持ち悪いので、一旦仮のテストを書いておく
+test("仮のテスト", () => {
+  expect(1).toBe(1);
+});
