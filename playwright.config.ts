@@ -1,4 +1,5 @@
-import { defineConfig, devices } from "@playwright/test";
+import { devices } from "@playwright/test";
+import { defineConfig } from "next/experimental/testmode/playwright";
 
 /**
  * Read environment variables from file.
@@ -76,8 +77,13 @@ export default defineConfig({
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+  // webServer: {
+  //   command: "npm run build && npm run start",
+  //   port: 3000,
+  // },
   webServer: {
-    command: "npm run build && npm run start",
-    port: 3000,
+    command: "npm run dev",
+    url: "http://localhost:3000",
   },
+  testMatch: "__tests__/**/*.spec.ts",
 });
