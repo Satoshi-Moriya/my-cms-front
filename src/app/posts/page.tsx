@@ -9,12 +9,14 @@ import Toast from "../components/toast";
 import { createPost } from "../lib/actions";
 import { postSchema } from "../schema";
 
-type ToastData = {
-  type: "success" | "error";
-} | null;
+type ToastData =
+  | {
+      type: "success" | "error";
+    }
+  | undefined;
 
 export default function Page() {
-  const [toast, setToast] = useState<ToastData>(null);
+  const [toast, setToast] = useState<ToastData>(undefined);
   const [lastResult, action] = useActionState(createPost, undefined);
   const [form, fields] = useForm({
     lastResult,
@@ -25,15 +27,14 @@ export default function Page() {
   });
 
   useEffect(() => {
-    if (form.status === "success") {
+    if (lastResult?.status === "success") {
       setToast({ type: "success" });
-    } else if (form.status === "error") {
-      console.log("test");
+    } else if (lastResult?.status === "error") {
       setToast({ type: "error" });
     } else {
-      setToast(null);
+      setToast(undefined);
     }
-  }, [form.status]);
+  }, [lastResult]);
 
   return (
     <div className="container mx-auto max-w-3xl">
@@ -115,7 +116,7 @@ export default function Page() {
           </div>
         </form>
       </main>
-      {toast && <Toast onClose={() => setToast(null)} type={toast.type} />}
+      {toast && <Toast onClose={() => setToast(undefined)} type={toast.type} />}
     </div>
   );
 }

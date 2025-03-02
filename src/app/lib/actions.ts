@@ -2,7 +2,6 @@
 
 import { parseWithZod } from "@conform-to/zod";
 import { PrismaClient } from "@prisma/client";
-import { redirect } from "next/navigation";
 
 import { postSchema } from "../schema";
 
@@ -16,7 +15,6 @@ export async function createPost(prevState: unknown, formData: FormData) {
   });
 
   if (submission.status !== "success") {
-    console.log("error");
     return submission.reply();
   }
 
@@ -34,5 +32,7 @@ export async function createPost(prevState: unknown, formData: FormData) {
     },
   });
 
-  redirect("/");
+  return submission.reply();
+
+  // redirect("/");
 }
