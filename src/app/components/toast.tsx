@@ -2,30 +2,34 @@
 
 import { useEffect } from "react";
 
-type ToastType = "success" | "error" | null;
+// type ToastType = "success" | "error" | null;
+type ToastType = "success" | "error";
 
-export default function Toast({ type, onClose }: { type: ToastType; onClose: () => void }) {
+type ToastProps = {
+  type: ToastType;
+  onClose: () => void;
+};
+
+export default function Toast({ type = "success", onClose }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 5000); // 5秒後にonCloseを呼び出す
+    }, 5000);
 
     return () => {
       clearTimeout(timer);
     };
   }, [onClose]);
 
+  const alertColor = type === "success" ? "alert-success" : "alert-error";
+  const alertMessage =
+    type === "success"
+      ? "記事が作成されました。"
+      : "何かしらの不具合で記事が作成できませんでした。";
+
   return (
     <div className="toast toast-end toast-top">
-      {type === "success" ? (
-        <div className="alert alert-success">
-          <span>記事が作成されました。</span>
-        </div>
-      ) : (
-        <div className="alert alert-error">
-          <span>何かしらの不具合で記事が作成できませんでした。</span>
-        </div>
-      )}
+      <div className={`alert ${alertColor}`}>{alertMessage}</div>
     </div>
   );
 }

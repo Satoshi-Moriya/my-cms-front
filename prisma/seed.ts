@@ -23,8 +23,8 @@ async function main() {
     postsData.push({
       title: `Post #${i + 1}`,
       content: `This is the content of post #${i + 1}`,
+      status: "publish",
       user_id: user.id,
-      slug_id: i + 1,
     });
   }
 
@@ -34,7 +34,7 @@ async function main() {
 
   for (let i = 0; i < 100; i++) {
     slugData.push({
-      name: `post-${i + 1}`,
+      name: `slug-${i + 1}`,
       post_id: i + 1,
     });
   }

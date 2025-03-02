@@ -82,8 +82,9 @@ export default defineConfig({
   //   port: 3000,
   // },
   webServer: {
-    command: "npm run dev",
+    command: "npm run dev --experimental-test-proxy",
     url: "http://localhost:3000",
+    reuseExistingServer: !process.env.CI,
   },
   testMatch: "__tests__/**/*.spec.ts",
 });

@@ -6,16 +6,18 @@ import Link from "next/link";
 import { useEffect, useState, useActionState } from "react";
 
 import Toast from "../components/toast";
-import { createPosts } from "../lib/actions";
+import { createPost } from "../lib/actions";
 import { postSchema } from "../schema";
 
-type ToastData = {
-  type: "success" | "error";
-} | null;
+type ToastData =
+  | {
+      type: "success" | "error";
+    }
+  | undefined;
 
 export default function Page() {
-  const [toast, setToast] = useState<ToastData>(null);
-  const [lastResult, action] = useActionState(createPosts, undefined);
+  const [toast, setToast] = useState<ToastData>(undefined);
+  const [lastResult, action] = useActionState(createPost, undefined);
   const [form, fields] = useForm({
     lastResult,
     shouldValidate: "onBlur",
@@ -25,14 +27,14 @@ export default function Page() {
   });
 
   useEffect(() => {
-    if (form.status === "success") {
+    if (lastResult?.status === "success") {
       setToast({ type: "success" });
-    } else if (form.status === "error") {
+    } else if (lastResult?.status === "error") {
       setToast({ type: "error" });
     } else {
-      setToast(null);
+      setToast(undefined);
     }
-  }, [form.status]);
+  }, [lastResult]);
 
   return (
     <div className="container mx-auto max-w-3xl">
@@ -69,6 +71,8 @@ export default function Page() {
               <textarea
                 className="textarea textarea-bordered w-full"
                 id="content"
+                key={fields.content.key}
+                name={fields.content.name}
                 placeholder="記事の内容を入力"
               ></textarea>
             </div>
@@ -94,7 +98,11 @@ export default function Page() {
               <label htmlFor="status">ステータス</label>
             </div>
             <div>
-              <select className="select select-bordered w-full" id="status">
+              <select
+                className="select select-bordered w-full"
+                id="status"
+                name={fields.status.name}
+              >
                 <option value="draft">下書き</option>
                 <option value="publish">公開</option>
               </select>
@@ -108,7 +116,7 @@ export default function Page() {
           </div>
         </form>
       </main>
-      {toast && <Toast onClose={() => setToast(null)} type={toast.type} />}
+      {toast && <Toast onClose={() => setToast(undefined)} type={toast.type} />}
     </div>
   );
 }
