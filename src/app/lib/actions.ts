@@ -24,6 +24,7 @@ export async function createPost(prevState: unknown, formData: FormData) {
       title: formData.get("title") as string,
       status: formData.get("status") as string,
       content: formData.get("content") as string,
+      slug: formData.get("slug") as string,
       user: {
         connect: {
           id: 1,

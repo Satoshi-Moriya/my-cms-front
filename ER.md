@@ -1,7 +1,6 @@
 ```mermaid
 erDiagram
   users ||--o{ posts: "ユーザーは0個以上の記事を持つ"
-  posts ||--|| slugs: "1つの投稿は1つのスラッグを持つ"
 
   users {
     bigint id PK
@@ -19,14 +18,7 @@ erDiagram
     string title "投稿タイトル"
     text content "投稿内容"
     boolean published "記事ステータス"
-    timestamp created_at
-    timestamp updated_at
-  }
-
-  slugs {
-    bigint id PK
-    bigint post_id FK
-    string name "スラッグ名"
+    string slug "スラッグ"
     timestamp created_at
     timestamp updated_at
   }
