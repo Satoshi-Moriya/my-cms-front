@@ -32,14 +32,5 @@ model Post {
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
   user        User     @relation(fields: [user_id], references: [id])
-  slug        Slug?
-}
-
-model Slug {
-  id          Int      @id @default(autoincrement())
-  post_id     Int      @unique
-  name        String   @unique
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now())
-  post        Post     @relation(fields: [post_id], references: [id])
+  slug        String   @unique
 }
