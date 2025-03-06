@@ -16,6 +16,12 @@ export default function Form() {
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: postSchema });
     },
+    defaultValue: {
+      title: "test1",
+      content: "test1 content",
+      slug: "test1 slug",
+      status: "publish",
+    },
   });
 
   return (
@@ -27,6 +33,7 @@ export default function Form() {
         <div>
           <input
             className="input input-bordered w-full"
+            defaultValue={fields.title.value}
             id="title"
             key={fields.slug.key}
             name={fields.title.name}
@@ -43,6 +50,7 @@ export default function Form() {
         <div>
           <textarea
             className="textarea textarea-bordered w-full"
+            defaultValue={fields.content.value}
             id="content"
             key={fields.content.key}
             name={fields.content.name}
@@ -57,6 +65,7 @@ export default function Form() {
         <div>
           <input
             className="input input-bordered w-full"
+            defaultValue={fields.slug.value}
             id="slug"
             key={fields.slug.key}
             name={fields.slug.name}
@@ -71,7 +80,12 @@ export default function Form() {
           <label htmlFor="status">ステータス</label>
         </div>
         <div>
-          <select className="select select-bordered w-full" id="status" name={fields.status.name}>
+          <select
+            className="select select-bordered w-full"
+            defaultValue={fields.status.value}
+            id="status"
+            name={fields.status.name}
+          >
             <option value="draft">下書き</option>
             <option value="publish">公開</option>
           </select>
