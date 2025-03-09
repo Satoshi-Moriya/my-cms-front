@@ -2,13 +2,14 @@
 
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
+import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useActionState } from "react";
 
 import { createPost } from "../lib/actions";
 import { postSchema } from "../schema";
 
-export default function Form() {
+export default function Form({ post }: { post: Post }) {
   const [lastResult, action] = useActionState(createPost, undefined);
   const [form, fields] = useForm({
     lastResult,
@@ -17,10 +18,10 @@ export default function Form() {
       return parseWithZod(formData, { schema: postSchema });
     },
     defaultValue: {
-      title: "test1",
-      content: "test1 content",
-      slug: "test1 slug",
-      status: "publish",
+      title: post.title,
+      content: post.content,
+      slug: post.slug,
+      status: post.status,
     },
   });
 
