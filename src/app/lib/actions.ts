@@ -50,7 +50,7 @@ export async function editPost(prevState: unknown, formData: FormData) {
 
   await prisma.post.update({
     where: {
-      id: Number(formData.get("postId")),
+      id: Number(formData.get("id")),
     },
     data: {
       title: formData.get("title") as string,

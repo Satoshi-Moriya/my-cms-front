@@ -30,7 +30,7 @@ export default function Form({ post }: { post: Post }) {
     <form action={action} className="grid gap-4" id={form.id} noValidate onSubmit={form.onSubmit}>
       <input
         defaultValue={fields.id.value}
-        id="postId"
+        id="id"
         key={fields.id.key}
         name={fields.id.name}
         type="hidden"

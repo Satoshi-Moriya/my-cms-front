@@ -5,10 +5,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // ToDo エラーハンドリングを追加する
-export async function fetchPostBySlug(slug: string) {
+export async function fetchPostByPostId(postId: number) {
   const post = await prisma.post.findUnique({
     where: {
-      slug,
+      id: postId,
     },
   });
 
