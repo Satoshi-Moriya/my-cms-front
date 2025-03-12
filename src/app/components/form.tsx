@@ -6,18 +6,19 @@ import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useActionState } from "react";
 
-import { createPost } from "../lib/actions";
-import { postSchema } from "../schema";
+import { editPost } from "../lib/actions";
+import { updatePostSchema } from "../schema";
 
 export default function Form({ post }: { post: Post }) {
-  const [lastResult, action] = useActionState(createPost, undefined);
+  const [lastResult, action] = useActionState(editPost, undefined);
   const [form, fields] = useForm({
     lastResult,
     shouldValidate: "onBlur",
     onValidate({ formData }) {
-      return parseWithZod(formData, { schema: postSchema });
+      return parseWithZod(formData, { schema: updatePostSchema });
     },
     defaultValue: {
+      id: post.id,
       title: post.title,
       content: post.content,
       slug: post.slug,
@@ -27,6 +28,14 @@ export default function Form({ post }: { post: Post }) {
 
   return (
     <form action={action} className="grid gap-4" id={form.id} noValidate onSubmit={form.onSubmit}>
+      <input
+        defaultValue={fields.id.value}
+        id="id"
+        key={fields.id.key}
+        name={fields.id.name}
+        type="hidden"
+      />
+      <div className="text-red-500">{fields.id.errors}</div>
       <div>
         <div>
           <label htmlFor="title">タイトル</label>
