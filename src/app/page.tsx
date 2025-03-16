@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import Modal from "./components/modal";
+import PostTable from "./components/post-table";
 
 export default function Home() {
   return (
@@ -24,68 +25,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="overflow-x-auto">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>
-                  <label>
-                    <input className="checkbox" type="checkbox" />
-                  </label>
-                </th>
-                <th>タイトル</th>
-                <th>作成日</th>
-                <th>ステータス</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  <label>
-                    <input className="checkbox" type="checkbox" />
-                  </label>
-                </th>
-                <td>投稿タイトル</td>
-                <td>2024/12/21</td>
-                <td>公開</td>
-                <th>
-                  <Link className="btn btn-ghost btn-xs" href="/posts">
-                    編集
-                  </Link>
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <label>
-                    <input className="checkbox" type="checkbox" />
-                  </label>
-                </th>
-                <td>投稿タイトル</td>
-                <td>2024/12/21</td>
-                <td>下書き</td>
-                <th>
-                  <Link className="btn btn-ghost btn-xs" href="/posts">
-                    編集
-                  </Link>
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <label>
-                    <input className="checkbox" type="checkbox" />
-                  </label>
-                </th>
-                <td>投稿タイトル</td>
-                <td>2024/12/21</td>
-                <td>公開</td>
-                <th>
-                  <Link className="btn btn-ghost btn-xs" href="/posts">
-                    編集
-                  </Link>
-                </th>
-              </tr>
-            </tbody>
-          </table>
+          <PostTable />
         </div>
         <div className="join py-3">
           <button className="btn join-item">1</button>
