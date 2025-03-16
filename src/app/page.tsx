@@ -2,8 +2,11 @@ import Link from "next/link";
 
 import Modal from "./components/modal";
 import PostTable from "./components/post-table";
+import { fetchPosts } from "./lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await fetchPosts();
+
   return (
     <div className="container mx-auto">
       <h1 className="p-5 text-3xl font-bold">ダッシュボード</h1>
@@ -25,7 +28,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="overflow-x-auto">
-          <PostTable />
+          <PostTable posts={posts} />
         </div>
         <div className="join py-3">
           <button className="btn join-item">1</button>

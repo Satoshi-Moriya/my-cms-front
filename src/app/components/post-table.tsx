@@ -1,6 +1,9 @@
+"use client";
+
+import { Post } from "@prisma/client";
 import Link from "next/link";
 
-export default function PostTable() {
+export default function PostTable({ posts }: { posts: Post[] }) {
   return (
     <table className="table">
       <thead>
@@ -17,51 +20,23 @@ export default function PostTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>
-            <label>
-              <input className="checkbox" type="checkbox" />
-            </label>
-          </th>
-          <td>投稿タイトル</td>
-          <td>2024/12/21</td>
-          <td>公開</td>
-          <th>
-            <Link className="btn btn-ghost btn-xs" href="/posts">
-              編集
-            </Link>
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <label>
-              <input className="checkbox" type="checkbox" />
-            </label>
-          </th>
-          <td>投稿タイトル</td>
-          <td>2024/12/21</td>
-          <td>下書き</td>
-          <th>
-            <Link className="btn btn-ghost btn-xs" href="/posts">
-              編集
-            </Link>
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <label>
-              <input className="checkbox" type="checkbox" />
-            </label>
-          </th>
-          <td>投稿タイトル</td>
-          <td>2024/12/21</td>
-          <td>公開</td>
-          <th>
-            <Link className="btn btn-ghost btn-xs" href="/posts">
-              編集
-            </Link>
-          </th>
-        </tr>
+        {posts.map((post) => (
+          <tr key={post.id}>
+            <th>
+              <label>
+                <input className="checkbox" type="checkbox" />
+              </label>
+            </th>
+            <td>{post.title}</td>
+            <td>{new Date(post.created_at).toLocaleDateString()}</td>
+            <td>{post.status == "publish" ? "公開" : "下書き"}</td>
+            <th>
+              <Link className="btn btn-ghost btn-xs" href={`/posts/${post.id}`}>
+                編集
+              </Link>
+            </th>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
