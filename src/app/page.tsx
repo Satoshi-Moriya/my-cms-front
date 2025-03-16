@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import Modal from "./components/modal";
+import { Pagination } from "./components/pagination";
 import PostTable from "./components/post-table";
 import { fetchPosts } from "./lib/data";
 
@@ -30,13 +31,7 @@ export default async function Home() {
         <div className="overflow-x-auto">
           <PostTable posts={posts} />
         </div>
-        <div className="join py-3">
-          <button className="btn join-item">1</button>
-          <button className="btn join-item">2</button>
-          <button className="btn btn-disabled join-item">...</button>
-          <button className="btn join-item">99</button>
-          <button className="btn join-item">100</button>
-        </div>
+        <Pagination />
       </main>
     </div>
   );
