@@ -8,6 +8,9 @@ import { fetchPosts } from "./lib/data";
 export default async function Home() {
   const posts = await fetchPosts();
 
+  // ToDo totalPageを取得する
+  const totalPage = 8;
+
   return (
     <div className="container mx-auto">
       <h1 className="p-5 text-3xl font-bold">ダッシュボード</h1>
@@ -31,7 +34,7 @@ export default async function Home() {
         <div className="overflow-x-auto">
           <PostTable posts={posts} />
         </div>
-        <Pagination />
+        <Pagination totalPages={totalPage} />
       </main>
     </div>
   );
