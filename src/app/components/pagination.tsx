@@ -15,7 +15,6 @@ export function Pagination({ totalPages = 8 }: { totalPages: number }) {
     return `${pathname}?${params.toString()}`;
   };
 
-  console.log(currentPage);
   const allPages = generatePagination(currentPage, totalPages);
 
   return (

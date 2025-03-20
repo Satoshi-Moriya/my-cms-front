@@ -1,9 +1,10 @@
-"use client";
-
-import { Post } from "@prisma/client";
 import Link from "next/link";
 
-export default function PostTable({ posts }: { posts: Post[] }) {
+import { fetchPostsByPage } from "../lib/data";
+
+export default async function PostTable({ currentPage }: { currentPage: number }) {
+  const posts = await fetchPostsByPage(currentPage);
+
   return (
     <table className="table">
       <thead>

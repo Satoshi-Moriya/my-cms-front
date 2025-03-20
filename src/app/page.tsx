@@ -3,13 +3,17 @@ import Link from "next/link";
 import Modal from "./components/modal";
 import { Pagination } from "./components/pagination";
 import PostTable from "./components/post-table";
-import { fetchPosts } from "./lib/data";
+import { fetchPostsPages } from "./lib/data";
 
-export default async function Home() {
-  const posts = await fetchPosts();
-
-  // ToDo totalPageを取得する
-  const totalPage = 8;
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    page: string;
+  }>;
+}) {
+  const totalPages = await fetchPostsPages();
+  const currentPage = Number((await searchParams).page) || 1;
 
   return (
     <div className="container mx-auto">
@@ -32,9 +36,9 @@ export default async function Home() {
           </Link>
         </div>
         <div className="overflow-x-auto">
-          <PostTable posts={posts} />
+          <PostTable currentPage={currentPage} />
         </div>
-        <Pagination totalPages={totalPage} />
+        <Pagination totalPages={totalPages} />
       </main>
     </div>
   );
