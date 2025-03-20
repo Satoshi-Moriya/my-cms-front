@@ -1,11 +1,19 @@
 import Link from "next/link";
 
 import Modal from "./components/modal";
+import { Pagination } from "./components/pagination";
 import PostTable from "./components/post-table";
-import { fetchPosts } from "./lib/data";
+import { fetchPostsPages } from "./lib/data";
 
-export default async function Home() {
-  const posts = await fetchPosts();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    page: string;
+  }>;
+}) {
+  const totalPages = await fetchPostsPages();
+  const currentPage = Number((await searchParams).page) || 1;
 
   return (
     <div className="container mx-auto">
@@ -28,15 +36,9 @@ export default async function Home() {
           </Link>
         </div>
         <div className="overflow-x-auto">
-          <PostTable posts={posts} />
+          <PostTable currentPage={currentPage} />
         </div>
-        <div className="join py-3">
-          <button className="btn join-item">1</button>
-          <button className="btn join-item">2</button>
-          <button className="btn btn-disabled join-item">...</button>
-          <button className="btn join-item">99</button>
-          <button className="btn join-item">100</button>
-        </div>
+        <Pagination totalPages={totalPages} />
       </main>
     </div>
   );
