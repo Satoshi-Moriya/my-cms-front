@@ -2,8 +2,22 @@
 
 import { Post } from "@prisma/client";
 import Link from "next/link";
+import React from "react";
+
+import { useCheckedIdStore } from "../lib/checked-id";
 
 export default function PostTable({ posts }: { posts: Post[] }) {
+  const ids = useCheckedIdStore((state) => state.ids);
+  console.log(ids);
+
+  const changeCheckedId = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      useCheckedIdStore.getState().checkId(id);
+    } else {
+      useCheckedIdStore.getState().removeId(id);
+    }
+  };
+
   return (
     <table className="table">
       <thead>
@@ -24,7 +38,11 @@ export default function PostTable({ posts }: { posts: Post[] }) {
           <tr key={post.id}>
             <th>
               <label>
-                <input className="checkbox" type="checkbox" />
+                <input
+                  className="checkbox"
+                  onChange={(event) => changeCheckedId(post.id, event)}
+                  type="checkbox"
+                />
               </label>
             </th>
             <td>{post.title}</td>
