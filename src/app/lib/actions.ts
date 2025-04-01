@@ -69,3 +69,15 @@ export async function editPost(prevState: unknown, formData: FormData) {
 
   // redirect("/");
 }
+
+// ToDo server actionなのでasyncが必要だが、lintエラーが起きるので下記で一旦無効化している
+// eslint-disable-next-line
+export async function deletePost(ids: number[]) {
+  await prisma.post.deleteMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+  });
+}
