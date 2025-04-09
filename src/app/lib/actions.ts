@@ -2,6 +2,7 @@
 
 import { parseWithZod } from "@conform-to/zod";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 import { postSchema } from "../schema";
 
@@ -80,4 +81,6 @@ export async function deletePost(ids: number[]) {
       },
     },
   });
+
+  revalidatePath("/");
 }

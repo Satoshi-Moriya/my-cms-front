@@ -7,9 +7,6 @@ import React from "react";
 import { useCheckedIdStore } from "../lib/checked-id";
 
 export default function PostTable({ posts }: { posts: Post[] }) {
-  const ids = useCheckedIdStore((state) => state.ids);
-  console.log(ids);
-
   const changeCheckedId = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       useCheckedIdStore.getState().checkId(id);

@@ -10,7 +10,6 @@ export default function Modal() {
   const showModal = () => dialogRef.current?.showModal();
   const closeModal = () => dialogRef.current?.close();
   const { ids } = useCheckedIdStore();
-  console.log(ids);
   const action = deletePost.bind(null, ids);
 
   return (
@@ -24,7 +23,9 @@ export default function Modal() {
           <div className="modal-action">
             <form action={action}>
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">削除する</button>
+              <button className="btn" onClick={closeModal}>
+                削除する
+              </button>
             </form>
             <button className="btn" onClick={closeModal}>
               キャンセル
