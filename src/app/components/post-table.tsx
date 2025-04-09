@@ -1,9 +1,19 @@
+"use client";
+
+import { Post } from "@prisma/client";
 import Link from "next/link";
+import React from "react";
 
-import { fetchPostsByPage } from "../lib/data";
+import { useCheckedIdStore } from "../lib/checked-id";
 
-export default async function PostTable({ currentPage }: { currentPage: number }) {
-  const posts = await fetchPostsByPage(currentPage);
+export default function PostTable({ posts }: { posts: Post[] }) {
+  const changeCheckedId = (id: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      useCheckedIdStore.getState().checkId(id);
+    } else {
+      useCheckedIdStore.getState().removeId(id);
+    }
+  };
 
   return (
     <table className="table">
@@ -25,7 +35,11 @@ export default async function PostTable({ currentPage }: { currentPage: number }
           <tr key={post.id}>
             <th>
               <label>
-                <input className="checkbox" type="checkbox" />
+                <input
+                  className="checkbox"
+                  onChange={(event) => changeCheckedId(post.id, event)}
+                  type="checkbox"
+                />
               </label>
             </th>
             <td>{post.title}</td>

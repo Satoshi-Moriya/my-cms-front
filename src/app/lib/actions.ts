@@ -2,6 +2,7 @@
 
 import { parseWithZod } from "@conform-to/zod";
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 import { postSchema } from "../schema";
 
@@ -68,4 +69,18 @@ export async function editPost(prevState: unknown, formData: FormData) {
   return submission.reply();
 
   // redirect("/");
+}
+
+// ToDo server actionなのでasyncが必要だが、lintエラーが起きるので下記で一旦無効化している
+// eslint-disable-next-line
+export async function deletePost(ids: number[]) {
+  await prisma.post.deleteMany({
+    where: {
+      id: {
+        in: ids,
+      },
+    },
+  });
+
+  revalidatePath("/");
 }
