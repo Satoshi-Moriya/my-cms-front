@@ -4,9 +4,10 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { Post } from "@prisma/client";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { editPost } from "../lib/actions";
+import { useToastStore } from "../lib/checked-id";
 import { updatePostSchema } from "../schema";
 
 export default function Form({ post }: { post: Post }) {
@@ -25,6 +26,17 @@ export default function Form({ post }: { post: Post }) {
       status: post.status,
     },
   });
+  const addToast = useToastStore((state) => state.addToast);
+
+  useEffect(() => {
+    if (lastResult?.status === "success") {
+      addToast("記事が更新されました。", "success");
+    } else if (lastResult?.status === "error") {
+      addToast("何かしらの不具合で記事が更新できませんでした。", "error");
+    } else {
+      return;
+    }
+  }, [lastResult, addToast]);
 
   return (
     <form action={action} className="grid gap-4" id={form.id} noValidate onSubmit={form.onSubmit}>
