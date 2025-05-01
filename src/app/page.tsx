@@ -3,6 +3,7 @@ import Link from "next/link";
 import Modal from "./components/modal";
 import { Pagination } from "./components/pagination";
 import PostTable from "./components/post-table";
+import Toaster from "./components/toaster";
 import { fetchPostsByPage, fetchPostsPages } from "./lib/data";
 
 export default async function Home({
@@ -40,6 +41,7 @@ export default async function Home({
           <PostTable posts={posts} />
         </div>
         <Pagination totalPages={totalPages} />
+        <Toaster />
       </main>
     </div>
   );

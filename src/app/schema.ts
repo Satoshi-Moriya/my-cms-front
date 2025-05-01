@@ -18,3 +18,7 @@ export const updatePostSchema = z.object({
   status: z.enum(["publish", "draft"]),
   content: z.string().optional(),
 });
+
+export const deletePostSchema = z.object({
+  ids: z.array(z.number()),
+});
