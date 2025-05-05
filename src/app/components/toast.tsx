@@ -1,35 +1,21 @@
 "use client";
 
-import { useEffect } from "react";
-
-// type ToastType = "success" | "error" | null;
-type ToastType = "success" | "error";
+// ToDo ToastItemに型の名前を全体で変更する
+import { Toast as ToastItem } from "../lib/checked-id";
 
 type ToastProps = {
-  type: ToastType;
-  onClose: () => void;
+  toast: ToastItem;
+  onRemove: (id: string) => void;
 };
 
-export default function Toast({ type = "success", onClose }: ToastProps) {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onClose();
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [onClose]);
+export default function Toast({ toast, onRemove }: ToastProps) {
+  const { id, message, type } = toast;
 
   const alertColor = type === "success" ? "alert-success" : "alert-error";
-  const alertMessage =
-    type === "success"
-      ? "記事が作成されました。"
-      : "何かしらの不具合で記事が作成できませんでした。";
 
   return (
-    <div className="toast toast-end toast-top">
-      <div className={`alert ${alertColor}`}>{alertMessage}</div>
+    <div className="toast toast-end toast-top" onClick={() => onRemove(id)}>
+      <div className={`alert ${alertColor}`}>{message}</div>
     </div>
   );
 }

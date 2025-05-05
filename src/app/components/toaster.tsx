@@ -1,6 +1,6 @@
 "use client";
 
-import Toast2 from "./toast2";
+import Toast from "./toast";
 import { useToastStore } from "../lib/checked-id";
 
 export default function Toaster() {
@@ -10,7 +10,7 @@ export default function Toaster() {
   return (
     <div>
       {toasts.map((toast) => (
-        <Toast2 key={toast.id} onRemove={removeToast} toast={toast} />
+        <Toast key={toast.id} onRemove={removeToast} toast={toast} />
       ))}
     </div>
   );
