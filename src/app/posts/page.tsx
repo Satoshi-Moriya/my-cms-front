@@ -3,20 +3,15 @@
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import Link from "next/link";
-import { useEffect, useState, useActionState } from "react";
+import { useEffect, useActionState } from "react";
 
-import Toast from "../components/toast";
+import Toaster from "../components/toaster";
 import { createPost } from "../lib/actions";
+import { useToastStore } from "../lib/checked-id";
 import { postSchema } from "../schema";
 
-type ToastData =
-  | {
-      type: "success" | "error";
-    }
-  | undefined;
-
 export default function Page() {
-  const [toast, setToast] = useState<ToastData>(undefined);
+  const addToast = useToastStore((state) => state.addToast);
   const [lastResult, action] = useActionState(createPost, undefined);
   const [form, fields] = useForm({
     lastResult,
@@ -28,17 +23,17 @@ export default function Page() {
 
   useEffect(() => {
     if (lastResult?.status === "success") {
-      setToast({ type: "success" });
+      addToast("記事が更新されました。", "success");
     } else if (lastResult?.status === "error") {
-      setToast({ type: "error" });
+      addToast("何かしらの不具合で記事が更新できませんでした。", "error");
     } else {
-      setToast(undefined);
+      return;
     }
-  }, [lastResult]);
+  }, [lastResult, addToast]);
 
   return (
     <div className="container mx-auto max-w-3xl">
-      <h1 className="p-5 text-3xl font-bold">記事作成・編集</h1>
+      <h1 className="p-5 text-3xl font-bold">記事作成</h1>
       <main className="p-5">
         <form
           action={action}
@@ -116,7 +111,7 @@ export default function Page() {
           </div>
         </form>
       </main>
-      {toast && <Toast onClose={() => setToast(undefined)} type={toast.type} />}
+      <Toaster />
     </div>
   );
 }
