@@ -1,7 +1,6 @@
 "use client";
 
-// ToDo ToastItemに型の名前を全体で変更する
-import { Toast as ToastItem } from "../lib/checked-id";
+import { ToastItem } from "../lib/checked-id";
 
 type ToastProps = {
   toast: ToastItem;

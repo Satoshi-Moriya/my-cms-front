@@ -7,14 +7,14 @@ type idsState = {
   reset: () => void;
 };
 
-export type Toast = {
+export type ToastItem = {
   id: string;
   message: string;
   type: "success" | "error";
 };
 
 type ToastState = {
-  toasts: Toast[];
+  toasts: ToastItem[];
   addToast: (message: string, type?: "success" | "error") => void;
   removeToast: (id: string) => void;
 };
